@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+// Define messages for storage optimization
+message StorageConfiguration {
+    string id = 1;              // Unique identifier for the storage configuration
+    repeated string items = 2;  // List of items stored in the configuration
+}
+
+// Define RPCs for storage optimization service
+service StorageOptimizationService {
+    // RPC to suggest storage optimizations
+    rpc SuggestOptimizations (google.protobuf.Empty) returns (StorageOptimizationSuggestions) {}
+
+    // RPC to apply suggested optimizations
+    rpc ApplyOptimizations (StorageConfiguration) returns (StorageConfiguration) {}
+}
+
+// Define the response message for storage optimization suggestions
+message StorageOptimizationSuggestions {
+    repeated StorageConfiguration suggestions = 1; // List of suggested storage configurations
+}

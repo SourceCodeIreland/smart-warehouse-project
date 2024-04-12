@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+// Define the messages for inventory management
+message InventoryItem {
+    string id = 1;          // Unique identifier for the inventory item
+    string name = 2;        // Name of the inventry item
+    int32 quantity = 3;     // Current quantity of the inventory item
+}
+
+// Define RPCs for inventory management service
+service InventoryService {
+    // RPC to get current inventory levels
+    rpc GetInventoryLevels (google.protobuf.Empty) returns (InventoryList) {}
+
+    // RPC to update inventory levels
+    rpc UpdateInventory (InventoryItem) returns (InventoryItem) {}
+
+    // RPC to get details of a specific inventory item
+    rpc GetInventoryItem (InventoryItem) returns (InventoryItem) {}
+}
+
+// Define the response message for inventory list
+message InventoryList {
+    repeated InventoryItem items = 1;    // List of inventory items
+}

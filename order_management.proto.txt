@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+// Define messages for order management
+message Order {
+    string id = 1;          // Unique identifier for the order
+    string item_id = 2;     // ID of the item being ordered
+    int32 quantity = 3;     // Quantity of the item being ordered
+    string status = 4;      // Status of the order (e.g., pending, shipped)
+}
+
+// Define RPCs for order management service
+service OrderManagementService {
+    // RPC to place a new order
+    rpc PlaceOrder (Order) returns (Order) {}
+
+    // RPC to cancel an existing order
+    rpc CancelOrder (Order) returns (Order) {}
+
+    // RPC to retrieve details of a specific order
+    rpc GetOrderDetails (Order) returns (Order) {}
+}
